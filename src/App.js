@@ -5,7 +5,7 @@ import Video from './pages/Video';
 import Comment from './pages/Comment';
 import User from './pages/User';
 import Login from './pages/Login';
-
+import VideoBanned from './pages/VideoBanned';
 function MainLayout() {
   // Get the current location to check the route
   const location = useLocation();
@@ -23,6 +23,7 @@ function MainLayout() {
           <Route path="/comment" element={<Comment />} />
           <Route path="/user" element={<User />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/videobanned" element={<VideoBanned />} />
         </Routes>
       </div>
     </div>
