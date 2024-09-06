@@ -74,7 +74,7 @@ function User() {
   );
 
   return (
-    <div style={{ maxWidth: '90%', margin: '0 auto', marginTop: 20 }}>
+    <div className="max-w-[90%] mx-auto mt-5">
       {/* Search Bar */}
       <TextField
         label="Search by Username"
@@ -83,41 +83,46 @@ function User() {
         margin="normal"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        className="mb-4"
       />
 
       {/* Table */}
-      <TableContainer component={Paper} style={{ overflowX: 'auto' }}>
+      <TableContainer component={Paper} className="overflow-x-auto">
         <Table>
-          <TableHead>
+          <TableHead className="bg-gray-100">
             <TableRow>
-              <TableCell style={styles.headerCell}>Username</TableCell>
-              <TableCell style={styles.headerCell}>Password</TableCell>
-              <TableCell style={styles.headerCell}>Active</TableCell>
-              <TableCell style={styles.headerCell}>First Name</TableCell>
-              <TableCell style={styles.headerCell}>Last Name</TableCell>
-              <TableCell style={styles.headerCell}>Sub</TableCell>
-              <TableCell style={styles.headerCell}>Avatar</TableCell>
-              <TableCell style={styles.headerCell}>Email</TableCell>
-              <TableCell style={styles.headerCell}>Timestamp</TableCell>
-              <TableCell style={styles.headerCell}>Actions</TableCell>
+              <TableCell className="font-bold text-center py-2">Username</TableCell>
+              <TableCell className="font-bold text-center py-2">Password</TableCell>
+              <TableCell className="font-bold text-center py-2">Active</TableCell>
+              <TableCell className="font-bold text-center py-2">First Name</TableCell>
+              <TableCell className="font-bold text-center py-2">Last Name</TableCell>
+              <TableCell className="font-bold text-center py-2">Sub</TableCell>
+              <TableCell className="font-bold text-center py-2">Avatar</TableCell>
+              <TableCell className="font-bold text-center py-2">Email</TableCell>
+              <TableCell className="font-bold text-center py-2">Timestamp</TableCell>
+              <TableCell className="font-bold text-center py-2">Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {filteredRows.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell style={styles.cell}>{row.username}</TableCell>
-                <TableCell style={styles.cell}>{row.password}</TableCell>
-                <TableCell style={styles.cell}>{row.active ? 'Yes' : 'No'}</TableCell>
-                <TableCell style={styles.cell}>{row.firstName}</TableCell>
-                <TableCell style={styles.cell}>{row.lastName}</TableCell>
-                <TableCell style={styles.cell}>{row.sub}</TableCell>
-                <TableCell style={styles.cell}>
+              <TableRow key={index} className="hover:bg-gray-50">
+                <TableCell className="text-center py-2">{row.username}</TableCell>
+                <TableCell className="text-center py-2">{row.password}</TableCell>
+                <TableCell className="text-center py-2">{row.active ? 'Yes' : 'No'}</TableCell>
+                <TableCell className="text-center py-2">{row.firstName}</TableCell>
+                <TableCell className="text-center py-2">{row.lastName}</TableCell>
+                <TableCell className="text-center py-2">{row.sub}</TableCell>
+                <TableCell className="text-center py-2">
                   <Avatar alt={row.firstName} src={row.avatar} />
                 </TableCell>
-                <TableCell style={styles.cell}>{row.email}</TableCell>
-                <TableCell style={styles.cell}>{row.timestamp}</TableCell>
-                <TableCell style={styles.cell}>
-                  <Button variant="contained" color="primary">
+                <TableCell className="text-center py-2">{row.email}</TableCell>
+                <TableCell className="text-center py-2">{row.timestamp}</TableCell>
+                <TableCell className="text-center py-2">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="bg-blue-500 hover:bg-blue-600"
+                  >
                     Edit
                   </Button>
                 </TableCell>
@@ -129,18 +134,5 @@ function User() {
     </div>
   );
 }
-
-const styles = {
-  headerCell: {
-    fontWeight: 'bold',
-    backgroundColor: '#f5f5f5',
-    textAlign: 'center',
-    padding: '10px',
-  },
-  cell: {
-    textAlign: 'center',
-    padding: '10px',
-  },
-};
 
 export default User;

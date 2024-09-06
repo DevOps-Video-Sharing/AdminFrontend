@@ -4,21 +4,30 @@ import { Link } from 'react-router-dom';
 
 function Sidebar() {
   return (
-    <div style={styles.sidebar}>
-      <h3 style={styles.title}>Admin</h3>
-      <ul style={styles.navList}>
-        <li style={styles.navItem}>
-          <Link to="/" style={styles.navLink}>
+    <div className="w-56 bg-white h-screen p-5 shadow-md flex flex-col items-start border-r border-gray-200">
+      <h3 className="mb-8 text-xl font-bold text-gray-800">Admin</h3>
+      <ul className="list-none p-0 w-full">
+        <li className="mb-4 w-full">
+          <Link
+            to="/"
+            className="block text-gray-600 text-base px-4 py-2 rounded-lg hover:bg-gray-200 hover:text-gray-800 hover:border-gray-300 transition duration-300"
+          >
             Video
           </Link>
         </li>
-        <li style={styles.navItem}>
-          <Link to="/comment" style={styles.navLink}>
+        <li className="mb-4 w-full">
+          <Link
+            to="/comment"
+            className="block text-gray-600 text-base px-4 py-2 rounded-lg hover:bg-gray-200 hover:text-gray-800 hover:border-gray-300 transition duration-300"
+          >
             Comment
           </Link>
         </li>
-        <li style={styles.navItem}>
-          <Link to="/user" style={styles.navLink}>
+        <li className="mb-4 w-full">
+          <Link
+            to="/user"
+            className="block text-gray-600 text-base px-4 py-2 rounded-lg hover:bg-gray-200 hover:text-gray-800 hover:border-gray-300 transition duration-300"
+          >
             User
           </Link>
         </li>
@@ -26,61 +35,5 @@ function Sidebar() {
     </div>
   );
 }
-
-const styles = {
-  sidebar: {
-    width: '220px',
-    background: '#ffffff',
-    height: '100vh',
-    padding: '20px',
-    boxShadow: '2px 0 5px rgba(0, 0, 0, 0.1)',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    borderRight: '1px solid #e0e0e0',
-  },
-  title: {
-    marginBottom: '30px',
-    color: '#333',
-    fontWeight: 'bold',
-    fontSize: '20px',
-  },
-  navList: {
-    listStyleType: 'none',
-    padding: 0,
-    width: '100%',
-  },
-  navItem: {
-    marginBottom: '15px',
-    width: '100%',
-  },
-  navLink: {
-    textDecoration: 'none',
-    color: '#555',
-    fontSize: '16px',
-    padding: '10px 15px',
-    borderRadius: '8px',
-    display: 'block',
-    transition: 'background 0.3s, color 0.3s, border 0.3s',
-    border: '2px solid transparent',
-  },
-};
-
-// Thêm sự kiện onMouseEnter và onMouseLeave để thay đổi style khi hover
-const handleMouseEnter = (event) => {
-  event.target.style.backgroundColor = '#e0e0e0'; // Màu nền tối hơn khi hover
-  event.target.style.color = '#333'; // Màu chữ tối hơn
-  event.target.style.border = '2px solid #ccc'; // Thêm khung khi hover
-};
-
-const handleMouseLeave = (event) => {
-  event.target.style.backgroundColor = '#ffffff'; // Trở lại màu nền trắng
-  event.target.style.color = '#555'; // Trở lại màu chữ gốc
-  event.target.style.border = '2px solid transparent'; // Trở lại khung trong suốt
-};
-
-// Áp dụng các sự kiện hover cho các Link
-styles.navLink.onMouseEnter = handleMouseEnter;
-styles.navLink.onMouseLeave = handleMouseLeave;
 
 export default Sidebar;
