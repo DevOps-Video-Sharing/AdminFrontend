@@ -1,5 +1,4 @@
-// pages/User.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   TableBody,
@@ -13,60 +12,27 @@ import {
   Button,
 } from '@mui/material';
 
-function createData(
-  username,
-  password,
-  active,
-  firstName,
-  lastName,
-  sub,
-  avatar,
-  email,
-  timestamp
-) {
-  return { username, password, active, firstName, lastName, sub, avatar, email, timestamp };
-}
-
-// Sample data for the table
-const initialRows = [
-  createData(
-    'johndoe',
-    '********',
-    true,
-    'John',
-    'Doe',
-    'Admin',
-    'https://via.placeholder.com/40',
-    'johndoe@example.com',
-    '2024-09-04 12:34:56'
-  ),
-  createData(
-    'janedoe',
-    '********',
-    false,
-    'Jane',
-    'Doe',
-    'User',
-    'https://via.placeholder.com/40',
-    'janedoe@example.com',
-    '2024-09-04 12:35:56'
-  ),
-  createData(
-    'alice',
-    '********',
-    true,
-    'Alice',
-    'Smith',
-    'Moderator',
-    'https://via.placeholder.com/40',
-    'alice@example.com',
-    '2024-09-04 12:36:56'
-  ),
-];
-
 function User() {
-  const [rows, setRows] = useState(initialRows);
+  const [rows, setRows] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Fetch users from the API
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/user/`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const data = await response.json();
+        setRows(data); // Assuming the data format directly matches what is needed for the table
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   // Filter rows based on the search term
   const filteredRows = rows.filter((row) =>
@@ -97,7 +63,7 @@ function User() {
               <TableCell className="font-bold text-center py-2">First Name</TableCell>
               <TableCell className="font-bold text-center py-2">Last Name</TableCell>
               <TableCell className="font-bold text-center py-2">Sub</TableCell>
-              <TableCell className="font-bold text-center py-2">Avatar</TableCell>
+              {/* <TableCell className="font-bold text-center py-2">Avatar</TableCell> */}
               <TableCell className="font-bold text-center py-2">Email</TableCell>
               <TableCell className="font-bold text-center py-2">Timestamp</TableCell>
               <TableCell className="font-bold text-center py-2">Actions</TableCell>
@@ -112,11 +78,11 @@ function User() {
                 <TableCell className="text-center py-2">{row.firstName}</TableCell>
                 <TableCell className="text-center py-2">{row.lastName}</TableCell>
                 <TableCell className="text-center py-2">{row.sub}</TableCell>
-                <TableCell className="text-center py-2">
-                  <Avatar alt={row.firstName} src={row.avatar} />
-                </TableCell>
-                <TableCell className="text-center py-2">{row.email}</TableCell>
-                <TableCell className="text-center py-2">{row.timestamp}</TableCell>
+                {/* <TableCell className="text-center py-2">
+                  <Avatar alt={row.firstName} src={row.avatar || 'https://via.placeholder.com/40'} />
+                </TableCell> */}
+                <TableCell className="text-center py-2">{row.email || 'N/A'}</TableCell>
+                <TableCell className="text-center py-2">{row.timestamp || 'N/A'}</TableCell>
                 <TableCell className="text-center py-2">
                   <Button
                     variant="contained"
