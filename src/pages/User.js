@@ -24,7 +24,7 @@ function User() {
           throw new Error('Failed to fetch users');
         }
         const data = await response.json();
-        setRows(data); // Assuming the data format directly matches what is needed for the table
+        setRows(data);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -57,7 +57,10 @@ function User() {
           <TableHead className="bg-gray-100">
             <TableRow>
               <TableCell className="font-bold text-center py-2">Username</TableCell>
-              <TableCell className="font-bold text-center py-2">Password</TableCell>
+              {/* Set the width for the password column */}
+              <TableCell className="font-bold text-center py-2" style={{ maxWidth: '100px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                Password
+              </TableCell>
               <TableCell className="font-bold text-center py-2">Active</TableCell>
               <TableCell className="font-bold text-center py-2">First Name</TableCell>
               <TableCell className="font-bold text-center py-2">Last Name</TableCell>
@@ -71,7 +74,10 @@ function User() {
             {filteredRows.map((row, index) => (
               <TableRow key={index} className="hover:bg-gray-50">
                 <TableCell className="text-center py-2">{row.username}</TableCell>
-                <TableCell className="text-center py-2">{row.password}</TableCell>
+                {/* Set a max-width and use ellipsis for overflowing text */}
+                <TableCell className="text-center py-2" style={{ maxWidth: '100px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {row.password}
+                </TableCell>
                 <TableCell className="text-center py-2">
                   <span
                     className={`${

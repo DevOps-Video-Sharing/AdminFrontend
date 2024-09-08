@@ -103,7 +103,7 @@ function VideoBanned() {
                 <TableCell className="text-center py-2">{row.views}</TableCell>
                 <TableCell className="text-center py-2">{row.likes}</TableCell>
                 <TableCell className="text-center font-semibold">
-                <div className="inline-block px-4 py-2 rounded-full text-white bg-red-400 hover:bg-red-500">
+                <div className="inline-block px-2 py-1 rounded-full text-sm bg-red-100 text-red-800">
                     {row.reports}
                 </div>
                 </TableCell>

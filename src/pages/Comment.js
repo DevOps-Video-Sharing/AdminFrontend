@@ -64,14 +64,14 @@ function Comment() {
                 <TableCell className="text-center py-2">{row.userId}</TableCell>
                 <TableCell className="text-center py-2">{row.userName}</TableCell>
                 <TableCell className="text-center py-2">{row.text}</TableCell>
-                <TableCell className="text-center font-semibold">
-                  <div
-                    className={`inline-block px-4 py-2 rounded-full text-white ${
-                      row.isToxic ? 'bg-red-400 hover:bg-red-500' : 'bg-green-400 hover:bg-green-500'
-                    }`}
+                <TableCell className="text-center py-2">
+                  <span
+                    className={`${
+                      row.isToxic ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    } px-2 py-1 rounded-full text-sm`}
                   >
-                    {row.isToxic ? 'True' : 'False'}
-                  </div>
+                    {row.isToxic ? 'False' : 'True'}
+                  </span>
                 </TableCell>
 
                 <TableCell className="text-center py-2">
