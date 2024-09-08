@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Avatar,
   TextField,
   Button,
 } from '@mui/material';
@@ -52,9 +51,9 @@ function User() {
         className="mb-4"
       />
 
-      {/* Table */}
+      {/* Responsive Table */}
       <TableContainer component={Paper} className="overflow-x-auto">
-        <Table>
+        <Table className="min-w-full divide-y divide-gray-200">
           <TableHead className="bg-gray-100">
             <TableRow>
               <TableCell className="font-bold text-center py-2">Username</TableCell>
@@ -63,7 +62,6 @@ function User() {
               <TableCell className="font-bold text-center py-2">First Name</TableCell>
               <TableCell className="font-bold text-center py-2">Last Name</TableCell>
               <TableCell className="font-bold text-center py-2">Sub</TableCell>
-              {/* <TableCell className="font-bold text-center py-2">Avatar</TableCell> */}
               <TableCell className="font-bold text-center py-2">Email</TableCell>
               <TableCell className="font-bold text-center py-2">Timestamp</TableCell>
               <TableCell className="font-bold text-center py-2">Actions</TableCell>
@@ -74,13 +72,18 @@ function User() {
               <TableRow key={index} className="hover:bg-gray-50">
                 <TableCell className="text-center py-2">{row.username}</TableCell>
                 <TableCell className="text-center py-2">{row.password}</TableCell>
-                <TableCell className="text-center py-2">{row.active ? 'Yes' : 'No'}</TableCell>
+                <TableCell className="text-center py-2">
+                  <span
+                    className={`${
+                      row.active ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                    } px-2 py-1 rounded-full text-sm`}
+                  >
+                    {row.active ? 'Yes' : 'No'}
+                  </span>
+                </TableCell>
                 <TableCell className="text-center py-2">{row.firstName}</TableCell>
                 <TableCell className="text-center py-2">{row.lastName}</TableCell>
                 <TableCell className="text-center py-2">{row.sub}</TableCell>
-                {/* <TableCell className="text-center py-2">
-                  <Avatar alt={row.firstName} src={row.avatar || 'https://via.placeholder.com/40'} />
-                </TableCell> */}
                 <TableCell className="text-center py-2">{row.email || 'N/A'}</TableCell>
                 <TableCell className="text-center py-2">{row.timestamp || 'N/A'}</TableCell>
                 <TableCell className="text-center py-2">
