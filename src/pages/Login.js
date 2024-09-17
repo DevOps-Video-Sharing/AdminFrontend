@@ -1,5 +1,13 @@
 // pages/Login.js
 import React, { useState } from 'react';
+import {
+  Container,
+  Box,
+  TextField,
+  Button,
+  Typography,
+  Paper,
+} from '@mui/material';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -13,54 +21,56 @@ function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center text-gray-800">Login</h2>
-        <form onSubmit={handleLogin} className="space-y-4">
-          {/* Username Input */}
-          <div>
-            <label htmlFor="username" className="block mb-1 text-sm font-medium text-gray-700">
-              Username
-            </label>
-            <input
-              type="text"
+    <Container component="main" maxWidth="xs">
+      <Paper elevation={6} sx={{ p: 4, mt: 8 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Typography component="h1" variant="h5">
+            Login
+          </Typography>
+          <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               id="username"
-              className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your username"
-              required
             />
-          </div>
-
-          {/* Password Input */}
-          <div>
-            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">
-              Password
-            </label>
-            <input
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
               type="password"
               id="password"
-              className="w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              required
             />
-          </div>
-
-          {/* Login Button */}
-          <div>
-            <button
+            <Button
               type="submit"
-              className="w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              fullWidth
+              variant="contained"
+              color="primary"
+              sx={{ mt: 3, mb: 2 }}
             >
               Login
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+            </Button>
+          </Box>
+        </Box>
+      </Paper>
+    </Container>
   );
 }
 
