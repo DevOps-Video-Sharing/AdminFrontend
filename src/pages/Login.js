@@ -1,4 +1,3 @@
-// pages/Login.js
 import React, { useState } from 'react';
 import {
   Container,
@@ -7,17 +6,46 @@ import {
   Button,
   Typography,
   Paper,
+  Alert,
 } from '@mui/material';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const handleLogin = (e) => {
+  const [error, setError] = useState('');
+  
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log('Username:', username);
-    console.log('Password:', password);
+    setError('');
+    // const apiLogin = `${process.env.REACT_APP_API_URL}/api/auth/login`;
+    try {
+      const response = await fetch('103.9.157.149:4000', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      // console.log('API Login URL:', apiLogin);
+      console.log('Response Status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error('Login failed. Please check your credentials.');
+      }
+
+      const data = await response.json();
+      
+      // Store the token in localStorage
+      localStorage.setItem('token', data.token);
+
+      console.log('Login successful:', data);
+      // Redirect the user to a protected page or dashboard
+      window.location.href = '/'; // Adjust based on your routing
+
+    } catch (error) {
+      setError(error.message);
+      console.error('Error during login:', error);
+    }
   };
 
   return (
@@ -33,6 +61,7 @@ function Login() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
+          {error && <Alert severity="error">{error}</Alert>}
           <Box component="form" onSubmit={handleLogin} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
