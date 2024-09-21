@@ -19,14 +19,13 @@ function Login() {
     setError('');
     // const apiLogin = `${process.env.REACT_APP_API_URL}/api/auth/login`;
     try {
-      const response = await fetch('103.9.157.149:4000', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-      // console.log('API Login URL:', apiLogin);
       console.log('Response Status:', response.status);
       
       if (!response.ok) {
@@ -35,7 +34,6 @@ function Login() {
 
       const data = await response.json();
       
-      // Store the token in localStorage
       localStorage.setItem('token', data.token);
 
       console.log('Login successful:', data);

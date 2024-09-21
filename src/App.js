@@ -6,24 +6,23 @@ import Comment from './pages/Comment';
 import User from './pages/User';
 import Login from './pages/Login';
 import VideoBanned from './pages/VideoBanned';
-function MainLayout() {
-  // Get the current location to check the route
-  const location = useLocation();
+import ProtectedRoute from './pages/ProtectedRoute';
 
-  // Determine if the current route is the login page
+function MainLayout() {
+  const location = useLocation();
   const isLoginPage = location.pathname === '/login';
 
   return (
     <div className="flex">
-      {/* Conditionally render the Sidebar only if not on the login page */}
       {!isLoginPage && <Sidebar />}
       <div className={`flex-1 ${!isLoginPage ? 'ml-[200px]' : ''} p-4`}>
         <Routes>
-          <Route path="/" element={<Video />} />
-          <Route path="/comment" element={<Comment />} />
-          <Route path="/user" element={<User />} />
+          {/* Protecting routes */}
+          <Route path="/" element={<ProtectedRoute element={<Video />} />} />
+          <Route path="/comment" element={<ProtectedRoute element={<Comment />} />} />
+          <Route path="/user" element={<ProtectedRoute element={<User />} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/videobanned" element={<VideoBanned />} />
+          <Route path="/videobanned" element={<ProtectedRoute element={<VideoBanned />} />} />
         </Routes>
       </div>
     </div>
